@@ -1,34 +1,36 @@
-import React from "react";
+import React from 'react';
+import './App.css';
 
-function App() {
+function ProfilePage() {
+  const user = {
+    name: 'Jane Doe',
+    avatar: 'https://i.pravatar.cc/150?img=47',
+    bio: 'Software engineer passionate about React and UI/UX design.',
+    location: 'New York, USA',
+    email: 'jane.doe@example.com',
+    website: 'https://janedoe.dev',
+    skills: ['React', 'JavaScript', 'CSS', 'Node.js'],
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-lg max-w-md w-full p-6 text-center">
-        <img
-          className="w-32 h-32 rounded-full mx-auto border-4 border-blue-500"
-          src="https://via.placeholder.com/150"
-          alt="Profile"
-        />
-        <h1 className="text-2xl font-bold mt-4 text-gray-800">John Doe</h1>
-        <p className="text-blue-600 font-semibold">Full Stack Developer</p>
-        <p className="text-gray-600 mt-3">
-          Passionate about building scalable web applications and working with modern technologies.
-        </p>
+    <div className="profile-container">
+      <div className="profile-card">
+        <img src={user.avatar} alt="Avatar" className="avatar" />
+        <h1>{user.name}</h1>
+        <p className="bio">{user.bio}</p>
+        <p><strong>Location:</strong> {user.location}</p>
+        <p><strong>Email:</strong> <a href={`mailto:${user.email}`}>{user.email}</a></p>
+        <p><strong>Website:</strong> <a href={user.website} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
 
-        <div className="mt-6 space-y-2">
-          <p>
-            📧 <span className="text-gray-700">john.doe@example.com</span>
-          </p>
-          <p>
-            🌐 <a href="https://johndoe.dev" className="text-blue-500 hover:underline">johndoe.dev</a>
-          </p>
-          <p>
-            📍 New York, USA
-          </p>
-        </div>
+        <h3>Skills</h3>
+        <ul className="skills-list">
+          {user.skills.map((skill, index) => (
+            <li key={index} className="skill">{skill}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 }
 
-export default App;
+export default ProfilePage;
